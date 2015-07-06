@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
-using ReactiveUI;
+using GalaSoft.MvvmLight;
 
 namespace DemoApplication
 {
-    public abstract class TabItemViewModel : ReactiveObject
+    public abstract class TabItemViewModel : ObservableObject
     {
         public abstract string Title { get; }
 

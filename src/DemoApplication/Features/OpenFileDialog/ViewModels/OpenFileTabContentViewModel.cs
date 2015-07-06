@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Windows.Input;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using MvvmDialogs;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
-using ReactiveUI;
 
 namespace DemoApplication.Features.OpenFileDialog.ViewModels
 {
-    public class OpenFileTabContentViewModel : ReactiveObject
+    public class OpenFileTabContentViewModel : ObservableObject
     {
         private readonly IDialogService dialogService;
-        private readonly ReactiveCommand<object> openFileCommand;
+        private readonly ICommand openFileCommand;
 
         private string path;
 
@@ -17,14 +18,13 @@ namespace DemoApplication.Features.OpenFileDialog.ViewModels
         {
             this.dialogService = dialogService;
             
-            openFileCommand = ReactiveCommand.Create();
-            openFileCommand.Subscribe(_ => OpenFile());
+            openFileCommand = new RelayCommand(OpenFile);
         }
 
         public string Path
         {
             get { return path; }
-            set { this.RaiseAndSetIfChanged(ref path, value); }
+            set { Set(ref path, value); }
         }
 
         public ICommand OpenFileCommand

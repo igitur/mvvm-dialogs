@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Windows.Input;
 using System.Windows.Threading;
-using ReactiveUI;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 
 namespace DemoApplication.Features.Dialog.NonModal.ViewModels
 {
-    public class CurrentTimeDialogViewModel : ReactiveObject
+    public class CurrentTimeDialogViewModel : ObservableObject
     {
-        private readonly ReactiveCommand<object> startClockCommand;
+        private readonly ICommand startClockCommand;
         
 // ReSharper disable once NotAccessedField.Local
         private DispatcherTimer timer;
 
         public CurrentTimeDialogViewModel()
         {
-            startClockCommand = ReactiveCommand.Create();
-            startClockCommand.Subscribe(_ => StartClock());
+            startClockCommand = new RelayCommand(StartClock);
         }
 
         public ICommand StartClockCommand
@@ -40,7 +40,7 @@ namespace DemoApplication.Features.Dialog.NonModal.ViewModels
         private void OnTick(object sender, EventArgs e)
         {
 // ReSharper disable once ExplicitCallerInfoArgument
-            this.RaisePropertyChanged("CurrentTime");
+            RaisePropertyChanged("CurrentTime");
         }
     }
 }

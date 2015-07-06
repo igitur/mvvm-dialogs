@@ -1,15 +1,15 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using MvvmDialogs;
 using MvvmDialogs.FrameworkDialogs.FolderBrowser;
-using ReactiveUI;
 
 namespace DemoApplication.Features.FolderBrowserDialog.ViewModels
 {
-    public class FolderBrowserTabContentViewModel : ReactiveObject
+    public class FolderBrowserTabContentViewModel : ObservableObject
     {
         private readonly IDialogService dialogService;
-        private readonly ReactiveCommand<object> browseFolderCommand;
+        private readonly ICommand browseFolderCommand;
 
         private string path;
 
@@ -17,14 +17,13 @@ namespace DemoApplication.Features.FolderBrowserDialog.ViewModels
         {
             this.dialogService = dialogService;
             
-            browseFolderCommand = ReactiveCommand.Create();
-            browseFolderCommand.Subscribe(_ => BrowseFolder());
+            browseFolderCommand = new RelayCommand(BrowseFolder);
         }
 
         public string Path
         {
             get { return path; }
-            set { this.RaiseAndSetIfChanged(ref path, value); }
+            set { Set(ref path, value); }
         }
 
         public ICommand BrowseFolderCommand

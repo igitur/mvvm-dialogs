@@ -1,26 +1,24 @@
 ﻿using System;
 using System.Windows.Input;
 using DemoApplication.Features.Dialog.NonModal.Views;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using MvvmDialogs;
-using ReactiveUI;
 
 namespace DemoApplication.Features.Dialog.NonModal.ViewModels
 {
-    public class NonModalDialogTabContentViewModel : ReactiveObject
+    public class NonModalDialogTabContentViewModel : ObservableObject
     {
         private readonly IDialogService dialogService;
-        private readonly ReactiveCommand<object> implicitShowCommand;
-        private readonly ReactiveCommand<object> explicitShowCommand;
+        private readonly ICommand implicitShowCommand;
+        private readonly ICommand explicitShowCommand;
 
         public NonModalDialogTabContentViewModel(IDialogService dialogService)
         {
             this.dialogService = dialogService;
 
-            implicitShowCommand = ReactiveCommand.Create();
-            implicitShowCommand.Subscribe(_ => ImplicitShow());
-
-            explicitShowCommand = ReactiveCommand.Create();
-            explicitShowCommand.Subscribe(_ => ExplicitShow());
+            implicitShowCommand = new RelayCommand(ImplicitShow);
+            explicitShowCommand = new RelayCommand(ExplicitShow);
         }
 
         public ICommand ImplicitShowCommand

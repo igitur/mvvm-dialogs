@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Windows.Input;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using MvvmDialogs;
 using MvvmDialogs.FrameworkDialogs.SaveFile;
-using ReactiveUI;
 
 namespace DemoApplication.Features.SaveFileDialog.ViewModels
 {
-    public class SaveFileTabContentViewModel : ReactiveObject
+    public class SaveFileTabContentViewModel : ObservableObject
     {
         private readonly IDialogService dialogService;
-        private readonly ReactiveCommand<object> saveFileCommand;
+        private readonly ICommand saveFileCommand;
 
         private string path;
 
@@ -17,14 +18,13 @@ namespace DemoApplication.Features.SaveFileDialog.ViewModels
         {
             this.dialogService = dialogService;
 
-            saveFileCommand = ReactiveCommand.Create();
-            saveFileCommand.Subscribe(_ => SaveFile());
+            saveFileCommand = new RelayCommand(SaveFile);
         }
 
         public string Path
         {
             get { return path; }
-            set { this.RaiseAndSetIfChanged(ref path, value); }
+            set { Set(ref path, value); }
         }
 
         public ICommand SaveFileCommand

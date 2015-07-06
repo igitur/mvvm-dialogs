@@ -1,27 +1,26 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using MvvmDialogs;
-using ReactiveUI;
 
 namespace DemoApplication.Features.Dialog.Modal.ViewModels
 {
-    public class AddTextDialogViewModel : ReactiveObject, IModalDialogViewModel
+    public class AddTextDialogViewModel : ObservableObject, IModalDialogViewModel
     {
-        private readonly ReactiveCommand<object> okCommand;
+        private readonly ICommand okCommand;
 
         private string text;
         private bool? dialogResult;
 
         public AddTextDialogViewModel()
         {
-            okCommand = ReactiveCommand.Create();
-            okCommand.Subscribe(_ => Ok());
+            okCommand = new RelayCommand(Ok);
         }
 
         public string Text
         {
             get { return text; }
-            set { this.RaiseAndSetIfChanged(ref text, value); }
+            set { Set(ref text, value); }
         }
 
         public ICommand OkCommand
@@ -32,7 +31,7 @@ namespace DemoApplication.Features.Dialog.Modal.ViewModels
         public bool? DialogResult
         {
             get { return dialogResult; }
-            private set { this.RaiseAndSetIfChanged(ref dialogResult, value); }
+            private set { Set(ref dialogResult, value); }
         }
 
         private void Ok()

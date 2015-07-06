@@ -2,17 +2,18 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using DemoApplication.Features.Dialog.Modal.Views;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using MvvmDialogs;
-using ReactiveUI;
 
 namespace DemoApplication.Features.Dialog.Modal.ViewModels
 {
-    public class ModalDialogTabContentViewModel : ReactiveObject
+    public class ModalDialogTabContentViewModel : ObservableObject
     {
         private readonly IDialogService dialogService;
-        private readonly ObservableCollection<string> texts; 
-        private readonly ReactiveCommand<object> implicitShowDialogCommand;
-        private readonly ReactiveCommand<object> explicitShowDialogCommand;
+        private readonly ObservableCollection<string> texts;
+        private readonly ICommand implicitShowDialogCommand;
+        private readonly ICommand explicitShowDialogCommand;
 
         public ModalDialogTabContentViewModel(IDialogService dialogService)
         {
@@ -20,11 +21,8 @@ namespace DemoApplication.Features.Dialog.Modal.ViewModels
 
             texts = new ObservableCollection<string>();
 
-            implicitShowDialogCommand = ReactiveCommand.Create();
-            implicitShowDialogCommand.Subscribe(_ => ImplicitShowDialog());
-
-            explicitShowDialogCommand = ReactiveCommand.Create();
-            explicitShowDialogCommand.Subscribe(_ => ExplicitShowDialog());
+            implicitShowDialogCommand = new RelayCommand(ImplicitShowDialog);
+            explicitShowDialogCommand = new RelayCommand(ExplicitShowDialog);
         }
 
         public ObservableCollection<string> Texts

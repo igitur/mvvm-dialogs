@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using ReactiveUI;
+using GalaSoft.MvvmLight;
 
 namespace DemoApplication
 {
     /// <summary>
     /// Acts as view model for <see cref="MainWindow"/>.
     /// </summary>
-    public class MainWindowViewModel : ReactiveObject
+    public class MainWindowViewModel : ObservableObject
     {
         private readonly ObservableCollection<TabItemViewModel> items;
 
