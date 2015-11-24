@@ -21,7 +21,7 @@ To open a modal window, decorate the view with the attached property `DialogServ
 
 ```xaml
 <UserControl
-    x:Class="DemoApplication.Features.Dialog.Modal.Views.ModalDialogTabContent"
+    x:Class="Aut.Features.Dialog.Modal.Views.ModalDialogTabContent"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
