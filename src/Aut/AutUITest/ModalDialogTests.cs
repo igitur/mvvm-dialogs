@@ -27,15 +27,19 @@ namespace AutUITest
         [TestMethod]
         public void AddTextUsingDialogTypeLocator()
         {
-            // ARRANGE
-            AddTextScreen addTextScreen = mainScreen.ModalDialog.ClickAddTextUsingDialogTypeLocator();
+            while (true)
+            {
+                // ARRANGE
+                AddTextScreen addTextScreen = mainScreen.ModalDialog.ClickAddTextUsingDialogTypeLocator();
 
-            // ACT
-            addTextScreen.Text = "Added text";
-            addTextScreen.ClickOK();
+                // ACT
+                addTextScreen.Text = "Added text";
+                addTextScreen.ClickOK();    
+            }
+            
 
             // ASSERT
-            CollectionAssert.AreEqual(new[] { "Added text" }, mainScreen.ModalDialog.Texts);
+            //CollectionAssert.AreEqual(new[] { "Added text" }, mainScreen.ModalDialog.Texts);
         }
 
         [TestMethod]
