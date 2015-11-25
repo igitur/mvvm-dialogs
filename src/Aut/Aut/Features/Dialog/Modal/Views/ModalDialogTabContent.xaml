@@ -16,14 +16,19 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        
-        <ListBox ItemsSource="{Binding Texts}" />
+        <ListBox
+            AutomationProperties.AutomationId="Vfkrmkr640yWmoMTKUWIbQ"
+            ItemsSource="{Binding Texts}" />
         
         <StackPanel Grid.Column="1">
-            <Button Command="{Binding ImplicitShowDialogCommand}">
+            <Button
+                AutomationProperties.AutomationId="FHE_oyWqBEq_9TPaU1yPTQ"
+                Command="{Binding ImplicitShowDialogCommand}">
                 <TextBlock Text="Add text using the dialog type locator..." />
             </Button>
-            <Button Command="{Binding ExplicitShowDialogCommand}">
+            <Button
+                AutomationProperties.AutomationId="Dq9ZjnVdFESxu8StkQ8jMw"
+                Command="{Binding ExplicitShowDialogCommand}">
                 <TextBlock Text="Add text by specifying dialog type..." />
             </Button>
         </StackPanel>

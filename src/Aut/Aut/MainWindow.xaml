@@ -22,6 +22,10 @@
                 <ResourceDictionary Source="/Resources/ApplicationResources.xaml" />
                 <ResourceDictionary Source="/Resources/DataTemplates.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="{x:Type TabItem}" d:DataContext="{d:DesignInstance local:TabItemViewModel}">
+                <Setter Property="AutomationProperties.AutomationId" Value="{Binding Title}" />
+            </Style>
         </ResourceDictionary>
     </Window.Resources>
     

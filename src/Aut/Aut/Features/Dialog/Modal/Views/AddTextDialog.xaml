@@ -20,14 +20,17 @@
     <StackPanel>
         <TextBox
             x:Name="textTextBox"
+            AutomationProperties.AutomationId="Csl8dP93gUGQLj7rVZxDAg"
             Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}" />
         
         <StackPanel Orientation="Horizontal">
             <Button
+                AutomationProperties.AutomationId="eyRW_87u20qR7QTCypm2RQ"
                 Content="OK"
                 Command="{Binding OkCommand}"
                 IsDefault="True" />
             <Button
+                AutomationProperties.AutomationId="I91auHr_EECzhSZyIfvvzQ"
                 Content="Cancel"
                 IsCancel="True" />
         </StackPanel>
